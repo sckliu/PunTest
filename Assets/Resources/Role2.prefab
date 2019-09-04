@@ -3260,7 +3260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     speed: 1
-    damage: 0.5
+    damage: 1
     name: Role2
     hp: 100
     hitArea: 0.8

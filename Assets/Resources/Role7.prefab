@@ -9781,7 +9781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     speed: 1
-    damage: 0.2
+    damage: 0.5
     name: Role7
     hp: 100
     hitArea: 1
