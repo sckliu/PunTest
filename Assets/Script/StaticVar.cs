@@ -22,17 +22,17 @@ public class StaticVar : MonoBehaviour
         StaticVar.AddVar("Role3");
         StaticVar.AddVar("Role4");
         StaticVar.AddVar("Role5");
-        StaticVar.AddVar("Role6");
+        StaticVar.AddVar("Role8");
     }
 
     static public void AddTestVar2()
     {
-        StaticVar.AddVar("Role6");
-        StaticVar.AddVar("Role5");
-        StaticVar.AddVar("Role4");
-        StaticVar.AddVar("Role3");
         StaticVar.AddVar("Role2");
+        StaticVar.AddVar("Role3");
+        StaticVar.AddVar("Role5");
         StaticVar.AddVar("Role1");
+        StaticVar.AddVar("Role7");
+        StaticVar.AddVar("Role8");
     }
 
     static public void AddVar(string RoleName)

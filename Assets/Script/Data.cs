@@ -6,14 +6,17 @@ public struct Data
     public string name;
     public float hp;
     public float hitArea;
+    public float dia;
 
-    public Data(float speed, float damage, string name, float hp, float hitArea)
+    public Data(float speed, float damage, string name, float hp, float hitArea, float dia)
     {
         this.speed = speed;
         this.damage = damage;
         this.name = name;
         this.hp = hp;
         this.hitArea = hitArea;
+        //[Header("擊退距離")]
+        this.dia = dia;
 
     }
 

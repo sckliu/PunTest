@@ -38,11 +38,28 @@ public class InRoomStatus : MonoBehaviourPunCallbacks
     #region Public Methods
 
 
-    public void LeaveRoom()
+    public void LeaveRoom(string RoomName)
     {
+        //if (GameObject.Find("遊戲管理器") != null)
+        //{
+        //    GameObject[] PlayerTarget = GameObject.Find("遊戲管理器").gameObject.scene.GetRootGameObjects();
+        //    foreach (GameObject monster in PlayerTarget)
+        //    {
+                
+        //        if (monster.GetPhotonView() != null) {
+        //            //if (monster.GetComponent<PhotonView>().IsMine)
+        //            //{
+        //                PhotonNetwork.Destroy(monster);
+        //            //}
+        //            //PhotonNetwork.Destroy(monster);
+        //        }
+        //    }
+        //}
+        PhotonNetwork.DestroyAll(true);
+        PlayerPrefs.SetString("RoomName", RoomName);
         PhotonNetwork.LeaveRoom();
+        
     }
-
 
     #endregion
     #region Photon Callbacks
@@ -52,7 +69,8 @@ public class InRoomStatus : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnLeftRoom()
     {
-        SceneManager.LoadScene("Lobby");
+        
+        SceneManager.LoadScene(PlayerPrefs.GetString("RoomName"));
     }
 
     public override void OnPlayerEnteredRoom(Player other)

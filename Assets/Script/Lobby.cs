@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using System;
 
 public class Lobby : MonoBehaviourPunCallbacks
 {
@@ -12,7 +13,7 @@ public class Lobby : MonoBehaviourPunCallbacks
     public InputField playerIF;            // 輸入欄位：玩家名稱
     public InputField roomCreateIF;        // 輸入欄位：玩家建立房間
     public InputField roomJoinIF;          // 輸入欄位：玩家加入房間
-    public Button BtnCreate, BtnJoin;      // 按鈕：建立與加入
+    public Button BtnCreate, BtnJoin, BtnRandom;      // 按鈕：建立與加入
 
     public string namePlayer, nameCreateRoom, nameJoinRoom;                                   // 字串： 玩家名稱、建房名稱、加入房間名稱
 
@@ -39,6 +40,11 @@ public class Lobby : MonoBehaviourPunCallbacks
     public void Connect()
     {
         PhotonNetwork.ConnectUsingSettings(); // 連線伺服器
+    }
+
+    public void BtnRandomRoom()
+    {
+        PhotonNetwork.JoinRandomRoom();
     }
 
     public void BtnCreatRoom()
@@ -75,6 +81,13 @@ public class Lobby : MonoBehaviourPunCallbacks
         roomJoinIF.interactable = true;
         BtnCreate.interactable = true;
         BtnJoin.interactable = true;
+        BtnRandom.interactable = true;
+    }
+
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        //base.OnJoinRandomFailed(returnCode, message);
+        PhotonNetwork.CreateRoom(DateTime.Now.ToString("yyyyMMddHHmmss"), new RoomOptions { MaxPlayers = 2 });
     }
 
     public override void OnCreatedRoom()
@@ -86,18 +99,22 @@ public class Lobby : MonoBehaviourPunCallbacks
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         textPrint.text = "建立房間失敗，Code：" + returnCode + "訊息：" + message;
+        //textPrint.text = "建立房間失敗";
     }
 
     public override void OnJoinedRoom()
     {
         //base.OnJoinedRoom();
         Debug.Log("User 進入了一個房間");
-        StaticVar.Roles.Clear();
+        //StaticVar.Roles.Clear();
+        //StaticVar.AddTestVar();
+        //StaticVar.AddTestVar2();
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
             Debug.Log("主人 建立房間 ");
 
-            StaticVar.AddTestVar();
+            //Debug.Log(StaticVar.Roles.Count + ":" + StaticVar.Roles[0]);
+            //StaticVar.AddTestVar2();
 
             // #Critical
             // Load the Room Level.
@@ -106,7 +123,8 @@ public class Lobby : MonoBehaviourPunCallbacks
         else
         {
             Debug.Log("客人 進入房間 ");
-            StaticVar.AddTestVar2();
+            //StaticVar.AddTestVar();
+            //Debug.Log(StaticVar.Roles.Count + ":" + StaticVar.Roles[0]);
             PhotonNetwork.LoadLevel("Game");
         }
         textPrint.text = "加入房間成功，房間名稱為：" + NameJoinRoom;
@@ -115,7 +133,8 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        textPrint.text = "加入房間失敗，Code：" + returnCode + "訊息：" + message;
+        //textPrint.text = "加入房間失敗，Code：" + returnCode + "訊息：" + message;
+        textPrint.text = "加入房間失敗";
     }
     #endregion
 }

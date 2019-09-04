@@ -499,7 +499,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f81c061e68f79924aa535c654f051478, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 258f3c346e47cd1499b3168f6ebaa4bd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -561,7 +561,29 @@ MonoBehaviour:
   m_Group: {fileID: 1240053213}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1088357713}
+        m_MethodName: CharacterButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1088357713}
+        m_MethodName: CharacterInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
@@ -1851,7 +1873,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f81c061e68f79924aa535c654f051478, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 75464443d1b58014891f2b3e3d5fad69, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1913,10 +1935,32 @@ MonoBehaviour:
   m_Group: {fileID: 1240053213}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1088357713}
+        m_MethodName: CharacterButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1088357713}
+        m_MethodName: CharacterInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &640315116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,7 +2021,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1177032ba6389a0458c050883f0ee197, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 165951b8d024fc24e9fc5fde3572b9a0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2233,7 +2277,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 9.47e-43, y: 1.394e-42, z: 0, w: 2.69e-42}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2311,7 +2355,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 17623818bb219d54fad1ee8a143acfe2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 78be7fa2fd2f0cc4fb075ab1147509ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2939,7 +2983,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1518705666}
   m_HandleRect: {fileID: 1518705665}
   m_Direction: 1
-  m_Value: 0
+  m_Value: 0.0000026769749
   m_Size: 0.98175704
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3692,7 +3736,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -4130,25 +4174,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characters:
-  - {fileID: 3857247719538967969, guid: 82c5b42933a1c6546888c158c0728318, type: 3}
   - {fileID: 542171801753568019, guid: 934da7bad160e234a9c3bb6081e569e8, type: 3}
-  - {fileID: 3426100064240581928, guid: 9c4407d48e2ee274cb75bb8a0ffbeb1b, type: 3}
+  - {fileID: 7381397598584814480, guid: a53107e7a16c40a4083644e6540c308d, type: 3}
   - {fileID: 3721114045743564641, guid: d937bba434f50124f9a3dc04d3d9713a, type: 3}
+  - {fileID: 6139368509482391610, guid: 7214fff29ba0b0b45aa3f5f43b24e69c, type: 3}
+  - {fileID: 2723097816502216675, guid: 33e5a96ebf6c331419795761e9bc48e9, type: 3}
+  - {fileID: 7388490944481975692, guid: df4932fc3a76f874c8bacb740d2692ef, type: 3}
+  - {fileID: 3857247719538967969, guid: 82c5b42933a1c6546888c158c0728318, type: 3}
+  - {fileID: 8688106518077290479, guid: 4a821582f33257942bd34a7e1bc24325, type: 3}
   spawnPoint: {fileID: 1144521850}
   characterToggle:
   - {fileID: 1950525009}
   - {fileID: 640315120}
   - {fileID: 1259104012}
   - {fileID: 705955050}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 287151898}
+  - {fileID: 1545060961}
+  - {fileID: 1766803648}
+  - {fileID: 637096199}
   selected:
   - {fileID: 2073352209}
   - {fileID: 1157935278}
   - {fileID: 691678101}
   - {fileID: 721132647}
+  - {fileID: 1937706565}
+  - {fileID: 1427267351}
+  - {fileID: 835631799}
+  - {fileID: 1652887175}
   partyImage:
   - {fileID: 395947465}
   - {fileID: 1469892865}
@@ -4158,10 +4210,14 @@ MonoBehaviour:
   - {fileID: 1684021335}
   partyImages:
   - {fileID: 0}
-  - {fileID: 21300000, guid: f81c061e68f79924aa535c654f051478, type: 3}
-  - {fileID: 21300000, guid: 1177032ba6389a0458c050883f0ee197, type: 3}
-  - {fileID: 21300000, guid: 165951b8d024fc24e9fc5fde3572b9a0, type: 3}
-  - {fileID: 21300000, guid: 17623818bb219d54fad1ee8a143acfe2, type: 3}
+  - {fileID: 21300000, guid: ff4c600cc5497944a8361f2ebe2c1e68, type: 3}
+  - {fileID: 21300000, guid: 31bf2146ead334447add76e825254587, type: 3}
+  - {fileID: 21300000, guid: a9f0e4b5c2a83a24bb40dd0c6986e339, type: 3}
+  - {fileID: 21300000, guid: 78be7fa2fd2f0cc4fb075ab1147509ca, type: 3}
+  - {fileID: 21300000, guid: 258f3c346e47cd1499b3168f6ebaa4bd, type: 3}
+  - {fileID: 21300000, guid: 2a1719be21983ca4f92e1ac6455e35c3, type: 3}
+  - {fileID: 21300000, guid: 701faea9bf75f244c8b1441851f8985a, type: 3}
+  - {fileID: 21300000, guid: 75464443d1b58014891f2b3e3d5fad69, type: 3}
   characterImageNumber: 0
   characterName: {fileID: 568607152}
   characterInfo: {fileID: 957127331}
@@ -5177,7 +5233,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 165951b8d024fc24e9fc5fde3572b9a0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17623818bb219d54fad1ee8a143acfe2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6383,7 +6439,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f81c061e68f79924aa535c654f051478, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a1719be21983ca4f92e1ac6455e35c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6445,10 +6501,32 @@ MonoBehaviour:
   m_Group: {fileID: 1240053213}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1088357713}
+        m_MethodName: CharacterButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1088357713}
+        m_MethodName: CharacterInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &1603074428
 GameObject:
   m_ObjectHideFlags: 0
@@ -6844,7 +6922,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f81c061e68f79924aa535c654f051478, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 701faea9bf75f244c8b1441851f8985a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6906,7 +6984,29 @@ MonoBehaviour:
   m_Group: {fileID: 1240053213}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1088357713}
+        m_MethodName: CharacterButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1088357713}
+        m_MethodName: CharacterInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
@@ -7451,7 +7551,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f81c061e68f79924aa535c654f051478, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1177032ba6389a0458c050883f0ee197, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -163,6 +163,15 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
+        time: 1
+        value: {x: 0, y: 0, z: 29.510002}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
         time: 2
         value: {x: 0, y: 0, z: 26.087002}
         inSlope: {x: 0, y: 0, z: 0}
@@ -189,7 +198,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 1
-        value: {x: 0, y: 0, z: 100.702}
+        value: {x: 0, y: 0, z: 105.05501}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -223,7 +232,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 1
-        value: {x: 0, y: 0, z: -80.66}
+        value: {x: 0, y: 0, z: -86.545006}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -257,7 +266,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 1
-        value: {x: 0, y: 0, z: 120.825005}
+        value: {x: 0, y: 0, z: 120.135}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -1168,6 +1177,13 @@ AnimationClip:
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
+      path: 3271012415
+      attribute: 4
+      script: {fileID: 0}
+      typeID: 4
+      customType: 4
+      isPPtrCurve: 0
+    - serializedVersion: 2
       path: 2488421552
       attribute: 4
       script: {fileID: 0}
@@ -1334,13 +1350,6 @@ AnimationClip:
       script: {fileID: 0}
       typeID: 1
       customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 3271012415
-      attribute: 4
-      script: {fileID: 0}
-      typeID: 4
-      customType: 4
       isPPtrCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
@@ -1821,6 +1830,15 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 2
         value: 0
         inSlope: 0
@@ -1841,6 +1859,15 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
         value: 0
         inSlope: 0
         outSlope: 0
@@ -1870,6 +1897,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 0
         value: 26.087002
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 29.510002
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1980,7 +2016,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 100.702
+        value: 105.05501
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2091,7 +2127,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: -80.66
+        value: -86.545006
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2202,7 +2238,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 120.825005
+        value: 120.135
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -4329,7 +4365,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: BoneHip/BoneRightLeg/BoneRightKnee
+    path: BoneHip/BoneTailInterval
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4339,7 +4375,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: BoneHip/BoneRightLeg/BoneRightKnee
+    path: BoneHip/BoneTailInterval
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4349,7 +4385,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: BoneHip/BoneRightLeg/BoneRightKnee
+    path: BoneHip/BoneTailInterval
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4599,7 +4635,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: BoneHip/BoneRightLeg/BoneRightKnee/BoneRightFoot
+    path: BoneHip/BoneRightLeg/BoneRightKnee
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4609,7 +4645,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: BoneHip/BoneRightLeg/BoneRightKnee/BoneRightFoot
+    path: BoneHip/BoneRightLeg/BoneRightKnee
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4619,7 +4655,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: BoneHip/BoneRightLeg/BoneRightKnee/BoneRightFoot
+    path: BoneHip/BoneRightLeg/BoneRightKnee
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4899,7 +4935,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: BoneHip/BoneTailInterval
+    path: BoneHip/BoneRightLeg/BoneRightKnee/BoneRightFoot
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4909,7 +4945,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: BoneHip/BoneTailInterval
+    path: BoneHip/BoneRightLeg/BoneRightKnee/BoneRightFoot
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4919,7 +4955,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: BoneHip/BoneTailInterval
+    path: BoneHip/BoneRightLeg/BoneRightKnee/BoneRightFoot
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

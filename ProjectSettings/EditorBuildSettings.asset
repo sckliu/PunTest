@@ -19,7 +19,7 @@ EditorBuildSettings:
     guid: 7156a426f0df4cc4c8a9f41712f5e652
   - enabled: 1
     path: Assets/Scenes/GameWait.unity
-    guid: 8a18311bcc2c70145b16e3899dc3dac4
+    guid: e261057ec5e39254c8c8dab632e47085
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: e042df779395a0740818e95c22bb1bea

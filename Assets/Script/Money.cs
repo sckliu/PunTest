@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 
 
-public class Money : MonoBehaviour
+public class Money : MonoBehaviourPun, IPunObservable
 {
     #region 宣告金錢欄位
     [Header("初始金錢")]
@@ -34,9 +33,9 @@ public class Money : MonoBehaviour
         money_end += TimeSpeed * Time.deltaTime;
 
         //錢足夠時激活button
-        for (int i = 0; i < StaticVar.Roles.Count; i++)
+        for (int i = 0; i < 6; i++)
         {
-            //StaticVar.btnArr[i].interactable = (money_end >= GMScript.buttonCost[i]);
+            StaticVar.btnArr[i].interactable = (money_end >= GMScript.buttonCost[i]);
         }
         
         Addmoney();
@@ -53,6 +52,7 @@ public class Money : MonoBehaviour
         money_mid.text = money_end.ToString("0");
         Money_Max.text = MoneyMax.ToString("0");
         level_money.text = MoneyMax.ToString("0");
+
     }
     #endregion
     #region 升級金礦最大容量
@@ -76,7 +76,35 @@ public class Money : MonoBehaviour
             GMScript.CharacterSoldier(index);
         }
     }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        // 如果 正在寫入資料
+        if (stream.IsWriting)
+        {
+            //傳遞(寫入)資料
+            stream.SendNext(MoneyMax);
+        }
+        // 如果 正在讀取資料
+        else if (stream.IsReading)
+        {
+            MoneyMax = (float)stream.ReceiveNext();
+            //if (nRoles != null) {
+
+            //    string[] tmpRoles = ((string)stream.ReceiveNext()).Split(',');
+
+            //    for (int i = 0; i < tmpRoles.Length; i++)
+            //    {
+            //        nRoles.Add(tmpRoles[i]);
+            //    }
+            //}
+
+            //nRoles = (List<string>)stream.ReceiveNext();
+
+            //Debug.Log("讀取資料");
+        }
+    }
     #endregion
-    
-    
+
+
 }

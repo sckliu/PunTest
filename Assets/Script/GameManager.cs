@@ -22,13 +22,23 @@ public class GameManager : MonoBehaviourPun, IPunObservable
     public float SideMaxBlood;
     [Header("對手主塔hpBar")]
     public GameObject SideHpBar;
+    [Header("遊戲結束 輸贏")]
+    public Text OverText;
+    [Header("遊戲結束UI")]
+    public GameObject GameOverUI;
+
+    //[Header("初始時間")]
+    //public float StartTime;
+    //[Header("時間物件")]
+    //public Image Clock_Time;
+    //private float TimeSpeed = 1;
+    //private float MaxTime;
 
     #region 小兵設定區
     [Header("小兵按鈕-限制花費分數")]
     public float[] buttonCost = new float[6];
     [Header("小兵按鈕-召喚所需費用")]
     public float[] cost = new float[6];
-
     #endregion
 
     #region 同步設定區
@@ -41,31 +51,56 @@ public class GameManager : MonoBehaviourPun, IPunObservable
     [Header("主塔Photon 元件")]
     public PhotonView MainPv;
     private string SendRoles;
-
     private List<string> nRoles;
+
+    public int GetRole = 0;
+    public int GetRoleCount = 6;
+    public bool test = false;
     #endregion
 
     public float height { get; set; }
 
     private void Start()
     {
+        //MaxTime = StartTime;
         StaticVar.MainBlood = MainBlood;
+
         StaticVar.btnArr = btnTmp;
-        
-        for (int i = 0; i < StaticVar.Roles.Count; i++)
+        if (!test) {
+
+            if (pv.IsMine)
+            {
+                GetRole = 6;
+                GetRoleCount = StaticVar.Roles.Count;
+            }
+        }
+
+        for (int i = GetRole; i < GetRole + 6; i++)
         {
+
+            //Debug.Log("User btnTmp:" + i +"---"+ StaticVar.Roles[i] + "..." + StaticVar.Roles[i].Replace("Role", "btn_img"));
             string btn_img = StaticVar.Roles[i].Replace("Role", "btn_img");
-            btnTmp[i].GetComponent<Image>().sprite = Resources.Load<Sprite>(btn_img);    //按鈕圖
-            btnTmp[i].transform.Find("Filled").GetComponent<Image>().sprite = Resources.Load<Sprite>(btn_img); //按鈕-開場先抓CD冷卻黑圖
-            Soldier[i] = Resources.Load<GameObject>(StaticVar.Roles[i]);
+            //Debug.Log("User btnTmp:" + btnTmp[i].GetComponent<Image>().sprite);
+            int tmp = i;
+            if (!test)
+            {
+                if (pv.IsMine)
+                {
+                    tmp = i - 6;
+                    GetRoleCount = StaticVar.Roles.Count;
+                }
+            }
+
+            btnTmp[tmp].GetComponent<Image>().sprite = Resources.Load<Sprite>(btn_img);    //按鈕圖
+            btnTmp[tmp].transform.Find("Filled").GetComponent<Image>().sprite = Resources.Load<Sprite>(btn_img); //按鈕-開場先抓CD冷卻黑圖
+            Soldier[tmp] = Resources.Load<GameObject>(StaticVar.Roles[i]);
         }
     }
-    public bool test = false;
-    public bool IsFightTower = false;
     public void CharacterSoldier(int index)
     {
 
-        GameObject Role = PhotonNetwork.Instantiate(StaticVar.Roles[index], CreateRolePoint2.position, new Quaternion(0, 90, 0, 0), 0);
+        GameObject Role = PhotonNetwork.Instantiate(StaticVar.Roles[GetRole + index], CreateRolePoint2.position, new Quaternion(0, 90, 0, 0), 0);
+        //GameObject Role = PhotonNetwork.Instantiate(StaticVar.Roles[index], CreateRolePoint2.position, new Quaternion(0, 90, 0, 0), 0);
 
         //給標籤,用來分辨是否是自己的
         Role.tag = (pv.IsMine) ? "P1" : "P2";
@@ -74,23 +109,80 @@ public class GameManager : MonoBehaviourPun, IPunObservable
         GameObject.Find("MainTower").tag = Role.tag;
         GameObject.Find("SideTower").tag = (Role.tag == "P2") ? "P1" : "P2";
 
+        //忽略自己
+        Physics2D.IgnoreCollision(Role.GetComponent<Collider2D>(), Role.GetComponent<Collider2D>());
+        Physics2D.showColliderContacts = true;
+        //忽略己方(P1或P2)
+        GameObject[] P = GameObject.FindGameObjectsWithTag(Role.tag);
+        foreach (GameObject g in P)
+        {
+            Physics2D.IgnoreCollision(Role.GetComponent<Collider2D>(), g.GetComponent<Collider2D>());
+        }
+
+        pv.RPC("RPCIgnoreMySildCollider", RpcTarget.All, false, Role.GetComponent<PhotonView>().ViewID);
+
         ////剛生成的時候,先忽略所遇到的塔
         Physics2D.IgnoreCollision(Role.GetComponent<Collider2D>(), GameObject.Find("MainTower").GetComponent<Collider2D>()); //自己畫面
         Physics2D.IgnoreCollision(Role.GetComponent<Collider2D>(), GameObject.Find("SideTower").GetComponent<Collider2D>()); //自己畫面
-        pv.RPC("RPCIgnoreCollider", RpcTarget.All, true, Role.GetComponent<PhotonView>().ViewID);   //對方畫面,RPC的自己
-        
+                                                                                                                             //pv.RPC("RPCIgnoreCollider", RpcTarget.All, true, Role.GetComponent<PhotonView>().ViewID,"");   //對方畫面,RPC的自己
+
         Role.transform.position = CreateRolePoint1.position;
         Role.transform.rotation = CreateRolePoint1.rotation;
 
         ////移動位置後,將對方塔打開,忽略自己塔(不要忽略對方塔)-自己的畫面
-        Physics2D.IgnoreCollision(Role.GetComponent<Collider2D>(), GameObject.Find("SideTower").GetComponent<Collider2D>(), false);
+        //Physics2D.IgnoreCollision(Role.GetComponent<Collider2D>(), GameObject.Find("SideTower").GetComponent<Collider2D>(), false);
         //對方畫面,RPC的自己,不要忽略對方主塔
-        pv.RPC("RPCIgnoreCollider", RpcTarget.All, false, Role.GetComponent<PhotonView>().ViewID);
-        
+
+        //Debug.Log(Role.tag + "--------------------------------------------->" + pv.IsMine);
+        //if (Role.tag == "P1")
+        //{
+        //    Physics2D.IgnoreCollision(Role.GetComponent<Collider2D>(), GameObject.Find("MainTower").GetComponent<Collider2D>());
+        //}
+        if (pv.IsMine)
+        {
+            pv.RPC("RPCIgnoreCollider", RpcTarget.All, false, Role.GetComponent<PhotonView>().ViewID, "MainTower");
+            if (Role.tag == "P1") {
+
+                Physics2D.IgnoreCollision(Role.GetComponent<Collider2D>(), GameObject.Find("SideTower").GetComponent<Collider2D>(), false);
+            }
+            //Physics2D.IgnoreCollision(Role.GetComponent<Collider2D>(), GameObject.Find("MainTower").GetComponent<Collider2D>(), false);
+        }
+        else
+        {
+            //pv.RPC("RPCIgnoreCollider", RpcTarget.All, false, Role.GetComponent<PhotonView>().ViewID, "SideTower");
+            if (Role.tag == "P2")
+            {
+
+                Physics2D.IgnoreCollision(Role.GetComponent<Collider2D>(), GameObject.Find("SideTower").GetComponent<Collider2D>(), false);
+            }
+            //Physics2D.IgnoreCollision(Role.GetComponent<Collider2D>(), GameObject.Find("SideTower").GetComponent<Collider2D>(), false);
+        }
+
+
+    }
+    [PunRPC]
+    private void RPCIgnoreMySildCollider(bool IsIgnore, int pvID)
+    {
+        GameObject[] PlayerTarget = GameObject.Find("遊戲管理器").gameObject.scene.GetRootGameObjects();
+        for (int i = 0; i < PlayerTarget.Length; i++)
+        {
+            if (PlayerTarget[i].name.Substring(0, 4) == "Role")
+            {
+                if (PlayerTarget[i].GetPhotonView().ViewID == pvID)
+                {
+                    Physics2D.IgnoreCollision(PlayerTarget[i].GetComponent<Collider2D>(), PlayerTarget[i].GetComponent<Collider2D>());
+                    GameObject[] P = GameObject.FindGameObjectsWithTag(PlayerTarget[i].tag);
+                    foreach (GameObject g in P)
+                    {
+                        Physics2D.IgnoreCollision(PlayerTarget[i].GetComponent<Collider2D>(), g.GetComponent<Collider2D>());
+                    }
+                }
+            }
+        }
     }
 
     [PunRPC]
-    private void RPCIgnoreCollider(bool IsIgnore, int pvID)
+    private void RPCIgnoreCollider(bool IsIgnore, int pvID,string Tower)
     {
         GameObject[] PlayerTarget = GameObject.Find("遊戲管理器").gameObject.scene.GetRootGameObjects();
         for (int i = 0; i < PlayerTarget.Length; i++)
@@ -102,6 +194,12 @@ public class GameManager : MonoBehaviourPun, IPunObservable
 
                     if (IsIgnore)
                     {
+                        //GameObject[] P = GameObject.FindGameObjectsWithTag(PlayerTarget[i].tag);
+                        //foreach (GameObject g in P)
+                        //{
+                        //    Physics2D.IgnoreCollision(PlayerTarget[i].GetComponent<Collider2D>(), g.GetComponent<Collider2D>());
+                        //}
+
                         //Debug.Log("PUN生成的物件--000--" + IsIgnore);
                         Physics2D.IgnoreCollision(PlayerTarget[i].GetComponent<Collider2D>(), GameObject.Find("MainTower").GetComponent<Collider2D>());
                         Physics2D.IgnoreCollision(PlayerTarget[i].GetComponent<Collider2D>(), GameObject.Find("SideTower").GetComponent<Collider2D>());
@@ -109,9 +207,9 @@ public class GameManager : MonoBehaviourPun, IPunObservable
                     }
                     else
                     {
-                        //Debug.Log("PUN生成的物件--000--" + IsIgnore);
+                        //Physics2D.IgnoreCollision(PlayerTarget[i].GetComponent<Collider2D>(), GameObject.Find(Tower).GetComponent<Collider2D>(), false);
+                        
                         //Physics2D.IgnoreCollision(PlayerTarget[i].GetComponent<Collider2D>(), GameObject.Find("MainTower").GetComponent<Collider2D>(), false);
-                        Physics2D.IgnoreCollision(PlayerTarget[i].GetComponent<Collider2D>(), GameObject.Find("MainTower").GetComponent<Collider2D>(), false);
                         //Physics2D.IgnoreLayerCollision(8, 9, false);
                     }
                 }
@@ -140,6 +238,7 @@ public class GameManager : MonoBehaviourPun, IPunObservable
     /// </summary>
     private void FixedUpdate()
     {
+        //Clock_walking();
         // 如果 是自己的物件
         if (pv.IsMine)
         {
@@ -147,7 +246,18 @@ public class GameManager : MonoBehaviourPun, IPunObservable
         else
         {
         }
+
+        if (MainBlood <= 0 || SideBlood <= 0) {
+            ClockGameOver();
+        }
+        
     }
+
+    //public void Clock_walking()
+    //{
+    //    MaxTime -= TimeSpeed * Time.deltaTime;
+    //    Clock_Time.fillAmount = MaxTime / StartTime;
+    //}
 
     //1-2主塔扣血
     public virtual void SideTowerHurt(float damage)
@@ -156,9 +266,18 @@ public class GameManager : MonoBehaviourPun, IPunObservable
 
             SideBlood -= damage;
             SideHpBar.GetComponent<Image>().fillAmount = SideBlood / SideMaxBlood;
-
+            //Debug.Log("1-2:主塔血量 " + SideBlood);
             //2-1
-            pv.RPC("RPCMainTowerHurt", RpcTarget.All, SideBlood);
+            if (!pv.IsMine)
+            {
+                pv.RPC("RPCMainTowerHurt", RpcTarget.All, SideBlood);
+            }
+            else {
+                //MainTowerHurt(damage);
+                //pv.RPC("RPCSideTowerHurt", RpcTarget.All, SideBlood);
+                //pv.RPC("RPCMainTowerHurt", RpcTarget.All, SideBlood);
+                //pv.RPC("RPCSideTowerHurt", RpcTarget.All, 0);
+            }
         }
     }
 
@@ -171,12 +290,14 @@ public class GameManager : MonoBehaviourPun, IPunObservable
 
             MainBlood -= damage;
             MainHpBar.GetComponent<Image>().fillAmount = MainBlood / MainMaxBlood;
-
-            //2-2
-            pv.RPC("RPCSideTowerHurt", RpcTarget.All, MainBlood);
+            if (!pv.IsMine)
+            {
+                //2-2
+                pv.RPC("RPCSideTowerHurt", RpcTarget.All, MainBlood);
+            }
         }
     }
-
+    
     //RPC 2-2 對方畫面,我們的主塔扣血
     [PunRPC]
     void RPCSideTowerHurt(float BloodRate, PhotonMessageInfo info)
@@ -189,7 +310,7 @@ public class GameManager : MonoBehaviourPun, IPunObservable
 
     //對方主塔扣血
     [PunRPC]
-     void RPCMainTowerHurt(float BloodRate, PhotonMessageInfo info)
+    void RPCMainTowerHurt(float BloodRate, PhotonMessageInfo info)
     {
         if (pv.IsMine)
         {
@@ -197,6 +318,30 @@ public class GameManager : MonoBehaviourPun, IPunObservable
         }
     }
 
+    
+    public void ClockGameOver()
+    {
+        if (MainBlood > SideBlood)
+        {
+            GameOver(true);
+        }
+        else {
+            GameOver(false);
+        }
+    }
+
+    public void GameOver(bool over)
+    {
+        GameOverUI.SetActive(true);
+        if (over)
+        {
+            OverText.text = "你贏了";
+        }
+        else
+        {
+            OverText.text = "你輸了";
+        }
+    }
 
     // 同步資料方法
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

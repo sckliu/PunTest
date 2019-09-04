@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7287009868763801768}
   - component: {fileID: 7287009868763801815}
   - component: {fileID: 7287009868763801814}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: fox_Fireball
   m_TagString: Bullet1
   m_Icon: {fileID: 0}
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
+  damage: 3
 --- !u!61 &7287009868763801815
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -9,9 +9,11 @@ public class House : MonoBehaviour
     public float hp = 100;
     private float maxhp;
 
+    GameManager GMScript;
     private void Start()
     {
         maxhp = hp;
+        if (GameObject.Find("遊戲管理器") != null) GMScript = GameObject.Find("遊戲管理器").GetComponent<GameManager>();
     }
 
     /// <summary>
@@ -26,16 +28,20 @@ public class House : MonoBehaviour
     }
 
 
-    //private void OnTriggerEnter2D(Collider2D collider)
-    //{
-    //    if (collider.gameObject.tag == "Bullet1")
-    //    {
-    //        Debug.Log("87");
-    //        hp -= 10;
-    //        hpBar.fillAmount = hp / maxhp;
+    private void OnTriggerEnter2D(Collider2D hit)
+    {
 
-    //    }
-    //}
+        float MyHurt = hit.gameObject.GetComponent<Character>().data.damage;
+        hit.gameObject.GetComponent<Character>().speed = 0;
+        GMScript.SideTowerHurt(MyHurt);
+        //if (collider.gameObject.tag == "Bullet1")
+        //{
+        //    Debug.Log("87");
+        //    hp -= 10;
+        //    hpBar.fillAmount = hp / maxhp;
+
+        //}
+    }
 
 
 }

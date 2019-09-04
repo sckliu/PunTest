@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CharacterButtons : MonoBehaviour
@@ -38,7 +39,7 @@ public class CharacterButtons : MonoBehaviour
     private void Update()
     {
         //確認是否選滿角色才開放下一頁
-        if (partyImage[2].sprite != null)
+        if (partyImage[5].sprite != null)
         {
             nextBtn.interactable = true;
         }
@@ -82,6 +83,38 @@ public class CharacterButtons : MonoBehaviour
             characterToggle[3].interactable = false;
             PartySelect();
         }
+        else if (characterImageNumber == 5)
+        {
+            selected[4].text = "已選擇";
+            selected[4].fontSize = 40;
+            selected[4].color = Color.yellow;
+            characterToggle[4].interactable = false;
+            PartySelect();
+        }
+        else if (characterImageNumber == 6)
+        {
+            selected[5].text = "已選擇";
+            selected[5].fontSize = 40;
+            selected[5].color = Color.yellow;
+            characterToggle[5].interactable = false;
+            PartySelect();
+        }
+        else if (characterImageNumber == 7)
+        {
+            selected[6].text = "已選擇";
+            selected[6].fontSize = 40;
+            selected[6].color = Color.yellow;
+            characterToggle[6].interactable = false;
+            PartySelect();
+        }
+        else if (characterImageNumber == 8)
+        {
+            selected[7].text = "已選擇";
+            selected[7].fontSize = 40;
+            selected[7].color = Color.yellow;
+            characterToggle[7].interactable = false;
+            PartySelect();
+        }
     }
     #endregion
     #region 角色按鈕
@@ -99,17 +132,21 @@ public class CharacterButtons : MonoBehaviour
             //選取角色的複製物件儲存到陣列中
             characterClone[index] = Instantiate(characters[index], spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;
             //調整複製物件的大小
-            if (index == 2)
+            switch (index)
             {
-                characterClone[index].transform.localScale = new Vector3(3f, 3f, 0);
-            }
-            else if (index == 3)
-            {
-                characterClone[index].transform.localScale = new Vector3(3f, 3f, 0);
-            }
-            else
-            {
-                characterClone[index].transform.localScale = new Vector3(12.5f, 12.5f, 0);
+                case 1:
+                case 2:
+                case 3:
+                    characterClone[index].transform.localScale = new Vector3(3f, 3f, 0);
+                    break;
+                case 0:
+                case 6:
+                    characterClone[index].transform.localScale = new Vector3(12.5f, 12.5f, 0);
+                    break;
+                default:
+                    characterClone[index].transform.localScale = new Vector3(3f, 3f, 0);
+                    break;
+
             }
             confirmSelected = true;
         }
@@ -140,25 +177,40 @@ public class CharacterButtons : MonoBehaviour
     /// </summary>
     public void CharacterInfo()
     {
-        if (characterImageNumber == 1)
-        {
-            characterName.text = "兔子";
-            characterInfo.text = "回復型角色,攻擊很弱";
-        }
-        else if (characterImageNumber == 2)
-        {
-            characterName.text = "狐狸";
-            characterInfo.text = "遠程型角色,使用火焰攻擊敵人";
-        }
-        else if (characterImageNumber == 3)
-        {
-            characterName.text = "狼";
-            characterInfo.text = "";
-        }
-        else if (characterImageNumber == 4)
-        {
-            characterName.text = "老虎";
-            characterInfo.text = "";
+        switch (characterImageNumber) {
+            case 1:
+                characterName.text = "狐狸";
+                characterInfo.text = "遠程型角色,使用火焰攻擊敵人";
+                break;
+            case 2:
+                characterName.text = "狼";
+                characterInfo.text = "近戰型角色。以劍攻擊、以盾防禦，不易受到傷害。";
+                break;
+            case 3:
+                characterName.text = "虎";
+                characterInfo.text = "近戰型角色。以雙刀攻擊，移動快速、攻擊快速，防禦較差。";
+                break;
+            case 4:
+                characterName.text = "鷹";
+                characterInfo.text = "遠程型角色。以弓箭攻擊，有機會擊中對手要害，防禦較差。";
+                break;
+            case 5:
+                characterName.text = "獅";
+                characterInfo.text = "近戰型角色。以槍攻擊，有機會擊中對手要害。";
+                break;
+            case 6:
+                characterName.text = "龍";
+                characterInfo.text = "遠程型角色。以杖攻擊、能發動大範圍魔法攻擊對手。血量很低。";
+                break;
+            case 7:
+                characterName.text = "兔子";
+                characterInfo.text = "遠程型角色。攻擊很弱";
+                //characterInfo.text = "回復型角色,攻擊很弱";
+                break;
+            case 8:
+                characterName.text = "熊";
+                characterInfo.text = "近戰型角色。以指虎攻擊，移動較慢、攻擊快速，防禦、血量較優秀。";
+                break;
         }
     }
     #endregion
@@ -171,26 +223,50 @@ public class CharacterButtons : MonoBehaviour
         if (partyImage[0].sprite == null)
         {
             partyImage[0].sprite = partyImages[characterImageNumber];
-            StaticVar.AddVar("Role1");
+            StaticVar.AddVar("Role" + characterImageNumber);
             confirmSelected = false;
 
         }
         else if (partyImage[1].sprite == null && confirmSelected)
         {
             partyImage[1].sprite = partyImages[characterImageNumber];
-            StaticVar.AddVar("Role2");
+            StaticVar.AddVar("Role" + characterImageNumber);
             confirmSelected = false;
         }
         else if (partyImage[2].sprite == null && confirmSelected)
         {
             partyImage[2].sprite = partyImages[characterImageNumber];
-            StaticVar.AddVar("Role3");
+            StaticVar.AddVar("Role" + characterImageNumber);
             confirmSelected = false;
         }
         else if (partyImage[3].sprite == null && confirmSelected)
         {
             partyImage[3].sprite = partyImages[characterImageNumber];
-            StaticVar.AddVar("Role4");
+            StaticVar.AddVar("Role"+ characterImageNumber);
+            confirmSelected = false;
+        }
+        else if (partyImage[4].sprite == null && confirmSelected)
+        {
+            partyImage[4].sprite = partyImages[characterImageNumber];
+            StaticVar.AddVar("Role" + characterImageNumber);
+            confirmSelected = false;
+        }
+        else if (partyImage[5].sprite == null && confirmSelected)
+        {
+            partyImage[5].sprite = partyImages[characterImageNumber];
+            StaticVar.AddVar("Role" + characterImageNumber);
+            confirmSelected = false;
+        }
+        else if (partyImage[6].sprite == null && confirmSelected)
+        {
+            partyImage[6].sprite = partyImages[characterImageNumber];
+            StaticVar.AddVar("Role" + characterImageNumber);
+            confirmSelected = false;
+        }
+        else if (partyImage[7].sprite == null && confirmSelected)
+        {
+            partyImage[7].sprite = partyImages[characterImageNumber];
+            StaticVar.AddVar("Role" + characterImageNumber);
             confirmSelected = false;
         }
     }
@@ -200,7 +276,8 @@ public class CharacterButtons : MonoBehaviour
     /// </summary>
     public void ResetButton()
     {
-        Application.LoadLevel("ChooseCharacter");
+        SceneManager.LoadScene("ChooseCharacter");
+        //Application.LoadLevel("ChooseCharacter");
     }
     /// <summary>
     /// 返回按鈕
@@ -211,7 +288,8 @@ public class CharacterButtons : MonoBehaviour
     }
     public void BackButton2()
     {
-        Application.LoadLevel("Menu");
+        SceneManager.LoadScene("Menu");
+        //Application.LoadLevel("Menu");
     }
     public void BackButton3()
     {
@@ -222,6 +300,12 @@ public class CharacterButtons : MonoBehaviour
     /// </summary>
     public void NextButton()
     {
-        Application.LoadLevel("Lobby");
+        GameObject[] PlayerTarget = GameObject.Find("Canvas").gameObject.scene.GetRootGameObjects();
+        foreach (GameObject monster in PlayerTarget)
+        {
+            Destroy(monster);
+        }
+        SceneManager.LoadScene("Lobby");
+        //Application.LoadLevel("Lobby");
     }
 }

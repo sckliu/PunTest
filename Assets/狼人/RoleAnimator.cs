@@ -6,6 +6,8 @@ public class RoleAnimator : MonoBehaviour
 {
     [Header("角色預置物件")]
     public GameObject objectWolf;
+    bool flyingFlag;
+    bool magicFlag;
 
     // Start is called before the first frame update
     void Start()
@@ -43,9 +45,24 @@ public class RoleAnimator : MonoBehaviour
             objectWolf.GetComponent<Animator>().SetBool("isAttack", false);
         }
 
+        if (Input.GetMouseButtonDown(2))
+        {
+            objectWolf.GetComponent<Animator>().SetBool("isMagic", true);
+        }
+        else if (Input.GetMouseButtonUp(2))
+        {
+            objectWolf.GetComponent<Animator>().SetBool("isMagic", false);
+        }
+
         if (Input.GetMouseButtonDown(1))
         {
             objectWolf.GetComponent<Animator>().SetTrigger("isHurt");
         }
+
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            objectWolf.GetComponent<Animator>().SetBool("isFly",  !(objectWolf.GetComponent<Animator>().GetBool("isFly")) );
+        }
+
     }
 }
